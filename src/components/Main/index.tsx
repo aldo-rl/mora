@@ -4,11 +4,12 @@ import type { ReactNode } from 'react'
 import {
   View,
   ScrollView,
-  SafeAreaView,
   StatusBar,
 } from 'react-native'
 
-import { styles } from './style'
+import { Bubbles } from 'components/Bubbles'
+
+import { styles } from './styles'
 
 interface Props {
   children: ReactNode
@@ -17,8 +18,8 @@ interface Props {
 const Main = ({ children }: Props) => {
   return (
     <>
-      <SafeAreaView />
       <StatusBar barStyle={'dark-content'} />
+      <Bubbles />
       <View style={styles.main}>
         <ScrollView contentContainerStyle={styles.content}>
           {children}

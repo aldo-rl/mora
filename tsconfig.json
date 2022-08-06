@@ -11,7 +11,7 @@
       "components/*": ["src/components/*"],
       "screens/*": ["src/screens/*"],
       "types/*": ["src/screens/*"],
-      "utils/*": ["src/screens/*"],
+      "utils/*": ["src/screens/"],
       "assets/*": ["src/assets/*"]
     }
   },
