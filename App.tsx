@@ -10,12 +10,13 @@
 
 import React from 'react'
 import { Text } from 'react-native'
-import { Main } from 'components/Main/main'
+import { Main } from 'components/Main'
+import { EmogiGreat } from 'components/Svg'
 
 const App = () => {
   return (
     <Main>
-      <Text>mora</Text>
+      <Text>{EmogiGreat}</Text>
     </Main>
   )
 }
