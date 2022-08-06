@@ -9,14 +9,13 @@
  */
 
 import React from 'react'
-import { Text } from 'react-native'
 import { Main } from 'components/Main'
-import { EmogiGreat } from 'components/Svg'
+import { Input } from 'components/Input'
 
 const App = () => {
   return (
     <Main>
-      <Text>{EmogiGreat}</Text>
+      <Input />
     </Main>
   )
 }
