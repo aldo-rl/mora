@@ -10,7 +10,7 @@
 
 import React from 'react'
 import { Text } from 'react-native'
-import { Main } from './src/components/Main/main'
+import { Main } from 'components/Main/main'
 
 const App = () => {
   return (
