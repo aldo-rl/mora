@@ -12,6 +12,7 @@ module.exports = {
           utils: "./src/utils",
           assets: "./src/assets",
           hooks: "./src/hooks",
+          storage: "./src/storage",
         },
       },
     ],

@@ -25,6 +25,7 @@ interface Props {
   isPractice?: boolean,
   activeScreen: ActiveScreen,
   navigateTo: (screen: ActiveScreen) => void,
+  reloadWord?: () => void,
 }
 
 const Header = (props: Props) => {
@@ -36,6 +37,7 @@ const Header = (props: Props) => {
     fails,
     activeScreen,
     navigateTo,
+    reloadWord,
   } = props
 
   const isActivePractice = activeScreen === 'practice'
@@ -43,15 +45,24 @@ const Header = (props: Props) => {
   const handleNavigate = () => {
     navigateTo(isActivePractice ? 'newWord' : 'practice')
   }
+
+  const handlerReload = () => {
+    reloadWord && reloadWord()
+  }
   return (
     <View style={styles.header}>
       <View style={styles.headerTop}>
         <View style={styles.left}>
           <Text style={styles.title}>{title}</Text>
-          <TouchableOpacity style={styles.touchable}>
-            <SvgReload />
-          </TouchableOpacity>
-          {isPractice && <Mistakes fails={fails ?? 0} />}
+          {
+            isPractice &&
+            <>
+              <TouchableOpacity style={styles.touchable} onPress={handlerReload}>
+                <SvgReload />
+              </TouchableOpacity>
+              <Mistakes fails={fails ?? 0} />
+            </>
+          }
 
         </View>
 

@@ -14,9 +14,18 @@ interface Props {
   onChange: (text: string) => void,
   spacingTop?: boolean,
   fail?: boolean,
+  editable?: boolean,
 }
 
-const Input = ({ label, value, onChange, spacingTop = false, fail = false }: Props) => {
+const Input = (props: Props) => {
+  const {
+    label,
+    value,
+    onChange,
+    spacingTop = false,
+    fail = false,
+    editable = true,
+  } = props
   const inputRef = useRef<TextInput>(null)
   const [isFocus, setIsFocus] = useState(false)
 
@@ -37,6 +46,7 @@ const Input = ({ label, value, onChange, spacingTop = false, fail = false }: Pro
       <TouchableOpacity
         style={styles.label}
         onPress={handleLabel}
+        disabled={!editable}
       >
         <Text style={[styles.labelText, isFocus && styles.labelFocus]}>{label}</Text>
       </TouchableOpacity>
@@ -48,6 +58,7 @@ const Input = ({ label, value, onChange, spacingTop = false, fail = false }: Pro
         onChangeText={onChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        editable={editable}
       />
 
       {fail && <View style={styles.indicator} />}

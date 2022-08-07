@@ -8,6 +8,8 @@ import { useForm } from '../../hooks/useForm'
 
 import type { ActiveScreen } from 'components/Navigation'
 
+import { saveWord } from 'storage/index'
+
 import { styles } from './styles'
 
 const dataInput: [
@@ -35,11 +37,15 @@ const NewWord = ({ activeScreen, navigateTo }: Props) => {
     state,
     disabled,
     handlerState,
+    handleReset,
   } = useForm()
 
 
-  const handlesave = () => {
-    console.log(state)
+
+  const handleSave = async () => {
+    const err = await saveWord(state)
+    if (err) return
+    handleReset()
   }
 
   return (
@@ -65,7 +71,7 @@ const NewWord = ({ activeScreen, navigateTo }: Props) => {
         }
       </View>
       <View>
-        <Button text={'Save'} onPress={handlesave} disabled={disabled} />
+        <Button text={'Save'} onPress={handleSave} disabled={disabled} />
       </View>
     </View>
   )

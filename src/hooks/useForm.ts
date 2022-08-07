@@ -11,9 +11,22 @@ const initialState: Word = {
 
 const useForm = () => {
   const [state, setState] = useState<Word>(initialState)
+  const [currentWord, setCurrentWord] = useState<Word>(initialState)
 
   const handlerState = (value: Word) => {
     setState(value)
+  }
+
+  const handleReset = () => {
+    setState(initialState)
+  }
+
+  const setCurrentWordPractice = (word: Word) => {
+    setCurrentWord(word)
+  }
+
+  const handleSpanish = (value: string) => {
+    setState({ ...state, spanish: value })
   }
 
   const disabled =
@@ -25,8 +38,12 @@ const useForm = () => {
 
   return {
     state,
+    currentWord,
     disabled,
     handlerState,
+    handleReset,
+    setCurrentWordPractice,
+    handleSpanish,
   }
 
 }
