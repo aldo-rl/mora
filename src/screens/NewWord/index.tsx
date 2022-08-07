@@ -3,9 +3,8 @@ import { View } from 'react-native'
 
 import { Input } from 'components/Input'
 import { Button } from 'components/Button'
-import type { Word } from 'types/Word'
 import { Header } from 'components/Header'
-
+import { useForm } from '../../hooks/useForm'
 import { styles } from './styles'
 
 const dataInput: [
@@ -22,27 +21,20 @@ const dataInput: [
     'gerund',
   ]
 
-const initialState: Word = {
-  spanish: '',
-  present: '',
-  past: '',
-  pParticiple: '',
-  gerund: '',
-}
+
 
 const NewWord = () => {
-  const [state, setState] = useState<Word>(initialState)
+
+  const {
+    state,
+    disabled,
+    handlerState,
+  } = useForm()
+
 
   const handlesave = () => {
     console.log(state)
   }
-
-  const disabled =
-    state.spanish === '' ||
-    state.present === '' ||
-    state.past === '' ||
-    state.pParticiple === '' ||
-    state.gerund === ''
 
   return (
     <View style={styles.fleOne}>
@@ -56,7 +48,7 @@ const NewWord = () => {
             <Input
               key={el}
               label={el}
-              onChange={(text) => setState({ ...state, [el]: text })}
+              onChange={(text) => handlerState({ ...state, [el]: text })}
               value={state[el]}
               spacingTop={el !== 'spanish'}
             />
