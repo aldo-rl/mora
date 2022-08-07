@@ -18,7 +18,11 @@ interface Props {
 const Main = ({ children }: Props) => {
   return (
     <>
-      <StatusBar barStyle={'dark-content'} />
+      <StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={'transparent'}
+        translucent
+      />
       <Bubbles />
       <View style={styles.main}>
         <ScrollView contentContainerStyle={styles.content}>
