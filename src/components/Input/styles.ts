@@ -6,7 +6,6 @@ import { colorPalette } from '../../utils/colorPalette'
 export const styles = StyleSheet.create({
   inputWrapper: {
     justifyContent: 'center',
-    // marginLeft: 50,
   },
   input: {
     paddingVertical: 14,
@@ -38,5 +37,8 @@ export const styles = StyleSheet.create({
     left: 120,
     zIndex: 1,
     backgroundColor: '#D9D9DA',
+  },
+  spacingTop: {
+    marginTop: 12,
   },
 })

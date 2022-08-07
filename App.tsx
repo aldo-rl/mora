@@ -10,14 +10,12 @@
 
 import React from 'react'
 import { Main } from 'components/Main'
-import { Input } from 'components/Input'
-import { Button } from 'components/Button'
+import { NewWord } from 'screens/NewWord'
 
 const App = () => {
   return (
     <Main>
-      <Input />
-      <Button text={'button'} onPress={() => { }} />
+      <NewWord />
     </Main>
   )
 }
