@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { View } from 'react-native'
+import React from 'react'
+import { View, Image } from 'react-native'
 
 import { Input } from 'components/Input'
 import { Button } from 'components/Button'
 import { Header } from 'components/Header'
 import { useForm } from '../../hooks/useForm'
+
 import { styles } from './styles'
 
 const dataInput: [
@@ -23,7 +24,7 @@ const dataInput: [
 
 
 
-const NewWord = () => {
+const Practice = () => {
 
   const {
     state,
@@ -41,7 +42,11 @@ const NewWord = () => {
       <Header
         title={'Hi'}
         subtitle={'Great!'}
-        legend={'You will learn a new word'}
+        legend={'Time to review the verbs'}
+      />
+      <Image
+        style={styles.illustration}
+        source={require('../../assets/images/illustration.png')}
       />
       <View style={styles.fleOne}>
         {
@@ -57,10 +62,10 @@ const NewWord = () => {
         }
       </View>
       <View>
-        <Button text={'Save'} onPress={handlesave} disabled={disabled} />
+        <Button text={'Verify'} onPress={handlesave} disabled={disabled} />
       </View>
     </View>
   )
 }
 
-export { NewWord }
+export { Practice }

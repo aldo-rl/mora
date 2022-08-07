@@ -10,12 +10,11 @@
 
 import React from 'react'
 import { Main } from 'components/Main'
-import { NewWord } from 'screens/NewWord'
-
+import { Practice } from 'screens/Practice'
 const App = () => {
   return (
     <Main>
-      <NewWord />
+      <Practice />
     </Main>
   )
 }
