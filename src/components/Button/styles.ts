@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     padding: 14,
     backgroundColor: colorPalette.blue,
     borderRadius: 12,
+    marginTop: 24,
   },
   buttonDisabled: {
     opacity: 0.5,
