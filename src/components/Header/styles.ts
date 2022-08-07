@@ -30,7 +30,6 @@ export const styles = StyleSheet.create({
   touchable: {
     padding: 6,
     borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.5)',
   },
   legend: {
     fontFamily: FONTS.regular,
