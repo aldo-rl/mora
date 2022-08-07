@@ -4,6 +4,7 @@ import { View } from 'react-native'
 import { Input } from 'components/Input'
 import { Button } from 'components/Button'
 import type { Word } from 'types/Word'
+import { Header } from 'components/Header'
 
 import { styles } from './styles'
 
@@ -45,6 +46,10 @@ const NewWord = () => {
 
   return (
     <View style={styles.fleOne}>
+      <Header
+        title={'Hi'}
+        legend={'Great! You will learn a new word'}
+      />
       <View style={styles.fleOne}>
         {
           dataInput.map((el) =>

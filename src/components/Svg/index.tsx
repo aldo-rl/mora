@@ -9,7 +9,7 @@ interface Props {
   stroke?: number,
 }
 
-export const SvgDialog = ({ size = 24, stroke = 1.15 }: Props) => (
+export const SvgDialog = ({ size = 24, stroke = 2 }: Props) => (
   <Svg
     width={22}
     height={22}
