@@ -11,6 +11,7 @@ import type { ActiveScreen } from 'components/Navigation'
 import { saveWord } from 'storage/index'
 
 import { styles } from './styles'
+import { Learn } from 'components/Learn'
 
 const dataInput: [
   'spanish',
@@ -40,40 +41,46 @@ const NewWord = ({ activeScreen, navigateTo }: Props) => {
     handleReset,
   } = useForm()
 
-
+  const [learn, setLearn] = useState(false)
 
   const handleSave = async () => {
     const err = await saveWord(state)
     if (err) return
     handleReset()
+    setLearn(true)
   }
 
   return (
-    <View style={styles.fleOne}>
-      <Header
-        title={'Hi'}
-        subtitle={'Great!'}
-        legend={'You will learn a new word'}
-        activeScreen={activeScreen}
-        navigateTo={navigateTo}
-      />
+    <>
       <View style={styles.fleOne}>
-        {
-          dataInput.map((el) =>
-            <Input
-              key={el}
-              label={el}
-              onChange={(text) => handlerState({ ...state, [el]: text })}
-              value={state[el]}
-              spacingTop={el !== 'spanish'}
-            />
-          )
-        }
+        <Header
+          title={'Hi'}
+          subtitle={'Great!'}
+          legend={'You will learn a new word'}
+          activeScreen={activeScreen}
+          navigateTo={navigateTo}
+        />
+        <View style={styles.fleOne}>
+          {
+            dataInput.map((el) =>
+              <Input
+                key={el}
+                label={el}
+                onChange={(text) => handlerState({ ...state, [el]: text })}
+                value={state[el]}
+                spacingTop={el !== 'spanish'}
+              />
+            )
+          }
+        </View>
+        <View>
+          <Button text={'Save'} onPress={handleSave} disabled={disabled} />
+        </View>
       </View>
-      <View>
-        <Button text={'Save'} onPress={handleSave} disabled={disabled} />
-      </View>
-    </View>
+      {learn && <Learn handleAutoClose={() => setLearn(false)} />}
+
+
+    </>
   )
 }
 
