@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    marginRight: 8,
     paddingBottom: 2,
     fontFamily: FONTS.bold,
   },

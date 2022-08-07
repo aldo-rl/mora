@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
+import { Mistakes } from 'components/Mistakes'
+
 import {
   SvgReload,
   SvgDialog,
@@ -18,9 +20,10 @@ interface Props {
   subtitle: string,
   legend: string,
   fails?: number,
+  isPractice?: boolean,
 }
 
-const Header = ({ title, subtitle, legend }: Props) => {
+const Header = ({ title, subtitle, legend, isPractice = false, fails }: Props) => {
   return (
     <View style={styles.header}>
       <View style={styles.headerTop}>
@@ -29,6 +32,8 @@ const Header = ({ title, subtitle, legend }: Props) => {
           <TouchableOpacity style={styles.touchable}>
             <SvgReload />
           </TouchableOpacity>
+          {isPractice && <Mistakes fails={fails ?? 0} />}
+
         </View>
 
         <View style={styles.right}>
@@ -36,6 +41,7 @@ const Header = ({ title, subtitle, legend }: Props) => {
             <SvgDialog />
           </TouchableOpacity>
         </View>
+
 
       </View>
 

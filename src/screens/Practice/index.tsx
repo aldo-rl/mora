@@ -43,6 +43,8 @@ const Practice = () => {
         title={'Hi'}
         subtitle={'Great!'}
         legend={'Time to review the verbs'}
+        isPractice
+        fails={3}
       />
       <Image
         style={styles.illustration}
