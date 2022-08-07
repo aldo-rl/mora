@@ -7,6 +7,8 @@ import {
 
 import { Mistakes } from 'components/Mistakes'
 
+import type { ActiveScreen } from 'components/Navigation'
+
 import {
   SvgReload,
   SvgDialog,
@@ -21,9 +23,26 @@ interface Props {
   legend: string,
   fails?: number,
   isPractice?: boolean,
+  activeScreen: ActiveScreen,
+  navigateTo: (screen: ActiveScreen) => void,
 }
 
-const Header = ({ title, subtitle, legend, isPractice = false, fails }: Props) => {
+const Header = (props: Props) => {
+  const {
+    title,
+    subtitle,
+    legend,
+    isPractice = false,
+    fails,
+    activeScreen,
+    navigateTo,
+  } = props
+
+  const isActivePractice = activeScreen === 'practice'
+
+  const handleNavigate = () => {
+    navigateTo(isActivePractice ? 'newWord' : 'practice')
+  }
   return (
     <View style={styles.header}>
       <View style={styles.headerTop}>
@@ -37,8 +56,12 @@ const Header = ({ title, subtitle, legend, isPractice = false, fails }: Props) =
         </View>
 
         <View style={styles.right}>
-          <TouchableOpacity style={styles.touchable}>
-            <SvgDialog />
+          <TouchableOpacity style={styles.touchable} onPress={handleNavigate}>
+            {
+              isActivePractice
+                ? <SvgAdd />
+                : <SvgDialog />
+            }
           </TouchableOpacity>
         </View>
 

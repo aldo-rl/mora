@@ -7,6 +7,8 @@ import {
   StatusBar,
 } from 'react-native'
 
+import { Navigation } from 'components/Navigation'
+
 import { Bubbles } from 'components/Bubbles'
 
 import { styles } from './styles'
@@ -26,7 +28,7 @@ const Main = ({ children }: Props) => {
       <Bubbles />
       <View style={styles.main}>
         <ScrollView contentContainerStyle={styles.content}>
-          {children}
+          <Navigation />
         </ScrollView>
       </View>
     </>

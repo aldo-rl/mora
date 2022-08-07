@@ -5,6 +5,9 @@ import { Input } from 'components/Input'
 import { Button } from 'components/Button'
 import { Header } from 'components/Header'
 import { useForm } from '../../hooks/useForm'
+
+import type { ActiveScreen } from 'components/Navigation'
+
 import { styles } from './styles'
 
 const dataInput: [
@@ -21,9 +24,12 @@ const dataInput: [
     'gerund',
   ]
 
+interface Props {
+  activeScreen: ActiveScreen,
+  navigateTo: (screen: ActiveScreen) => void
+}
 
-
-const NewWord = () => {
+const NewWord = ({ activeScreen, navigateTo }: Props) => {
 
   const {
     state,
@@ -42,6 +48,8 @@ const NewWord = () => {
         title={'Hi'}
         subtitle={'Great!'}
         legend={'You will learn a new word'}
+        activeScreen={activeScreen}
+        navigateTo={navigateTo}
       />
       <View style={styles.fleOne}>
         {

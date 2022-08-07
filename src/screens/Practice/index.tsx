@@ -6,6 +6,8 @@ import { Button } from 'components/Button'
 import { Header } from 'components/Header'
 import { useForm } from '../../hooks/useForm'
 
+import type { ActiveScreen } from 'components/Navigation'
+
 import { styles } from './styles'
 
 const dataInput: [
@@ -23,8 +25,12 @@ const dataInput: [
   ]
 
 
+interface Props {
+  activeScreen: ActiveScreen,
+  navigateTo: (screen: ActiveScreen) => void,
+}
 
-const Practice = () => {
+const Practice = ({ activeScreen, navigateTo }: Props) => {
 
   const {
     state,
@@ -45,6 +51,8 @@ const Practice = () => {
         legend={'Time to review the verbs'}
         isPractice
         fails={3}
+        activeScreen={activeScreen}
+        navigateTo={navigateTo}
       />
       <Image
         style={styles.illustration}
