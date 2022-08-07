@@ -15,11 +15,12 @@ import { styles } from './styles'
 
 interface Props {
   title: string,
-  fails?: number,
+  subtitle: string,
   legend: string,
+  fails?: number,
 }
 
-const Header = ({ title, legend }: Props) => {
+const Header = ({ title, subtitle, legend }: Props) => {
   return (
     <View style={styles.header}>
       <View style={styles.headerTop}>
@@ -39,6 +40,7 @@ const Header = ({ title, legend }: Props) => {
       </View>
 
       <View style={styles.headerBottom}>
+        <Text style={styles.legend}>{subtitle}</Text>
         <Text style={styles.legend}>{legend}</Text>
       </View>
     </View>
