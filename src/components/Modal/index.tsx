@@ -13,13 +13,15 @@ import { styles } from './styles'
 
 interface Props {
   children: ReactNode,
-  handlerClose?: () => void,
+  handleAutoClose?: () => void,
+  autoClose?: boolean,
 }
 
-const Modal = ({ children, handlerClose }: Props) => {
+const Modal = ({ children, handleAutoClose, autoClose }: Props) => {
   const { opacity, translateY } = useAnimation({
     duration: 250,
-    handlerClose
+    handleAutoClose,
+    autoClose
   })
   return (
     <>

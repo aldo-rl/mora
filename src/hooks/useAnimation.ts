@@ -10,14 +10,16 @@ import {
 interface Params {
   duration: number,
   easing?: EasingFunction,
-  handlerClose?: () => void,
+  handleAutoClose?: () => void,
+  autoClose?: boolean,
 }
 
 const useAnimation = (params: Params) => {
   const {
     duration,
     easing = Easing.in(Easing.ease),
-    handlerClose,
+    handleAutoClose,
+    autoClose = false
   } = params
   const node = useRef(new Animated.Value(0)).current
 
@@ -28,16 +30,27 @@ const useAnimation = (params: Params) => {
       easing,
       useNativeDriver: true
     }).start(() => {
-      if (!handlerClose) return
+      if (!autoClose && !handleAutoClose) return
       Animated.timing(node, {
         toValue: 0,
         delay: 1100,
         duration: duration / 2,
         easing,
         useNativeDriver: true
-      }).start(handlerClose)
+      }).start(handleAutoClose)
     })
   }, [])
+
+  useEffect(() => {
+    if (!handleAutoClose || autoClose) return
+
+    Animated.timing(node, {
+      toValue: 0,
+      duration: duration / 2,
+      easing,
+      useNativeDriver: true
+    }).start(handleAutoClose)
+  }, [handleAutoClose])
 
 
   const opacity = node.interpolate({

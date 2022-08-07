@@ -5,6 +5,7 @@ import { Input } from 'components/Input'
 import { Button } from 'components/Button'
 import { Header } from 'components/Header'
 import { Congratulations } from 'components/Congratulations'
+import { Mistake } from 'components/Mistake'
 
 import { DataInput, useForm } from '../../hooks/useForm'
 import { useModal } from 'hooks/useModal'
@@ -43,12 +44,14 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
     handleSpanish,
     setFailswords,
     setTotalIntents,
-    handleSuccess,
+    handleFinish,
   } = useForm()
 
   const {
     congratulations,
     setCongratulations,
+    mistake,
+    setMistake,
   } = useModal()
 
   useEffect(() => {
@@ -86,9 +89,16 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
     ) fails = [...fails, 'gerund']
 
     if (fails.length === 0) {
-      handleSuccess()
+      handleFinish()
       reloadWord()
       setCongratulations(true)
+      return
+    }
+
+    if (intents >= 2) {
+      setMistake(true)
+      handleFinish()
+      return
     }
 
     setFailswords(fails)
@@ -100,6 +110,11 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
     return find === undefined
       ? false
       : true
+  }
+
+  const handleMistake = () => {
+    setMistake(false)
+    reloadWord()
   }
 
   return (
@@ -139,7 +154,9 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
         </View>
       </View>
 
-      {congratulations && <Congratulations handlerClose={() => setCongratulations(false)} />}
+      {congratulations && <Congratulations handleAutoClose={() => setCongratulations(false)} />}
+      {mistake && <Mistake mistakeWord={currentWord} handleRefresh={handleMistake} />}
+
     </>
   )
 }

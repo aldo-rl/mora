@@ -10,11 +10,11 @@ import { EmogiGreat } from 'components/Svg'
 
 import { styles } from './styles'
 interface Props {
-  handlerClose?: () => void,
+  handleAutoClose?: () => void,
 }
-const Congratulations = ({ handlerClose }: Props) => {
+const Congratulations = ({ handleAutoClose }: Props) => {
   return (
-    <Modal handlerClose={handlerClose}>
+    <Modal handleAutoClose={handleAutoClose} autoClose>
       <View style={styles.content}>
         <Text style={styles.title}>{`${EmogiGreat} Congratulations`}</Text>
         <Text style={styles.message}>You are good</Text>

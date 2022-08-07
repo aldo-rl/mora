@@ -49,7 +49,7 @@ const useForm = () => {
     setIntents(prev => prev + 1)
   }
 
-  const handleSuccess = () => {
+  const handleFinish = () => {
     setIntents(0)
     setFails([])
   }
@@ -59,7 +59,8 @@ const useForm = () => {
     state.present === '' ||
     state.past === '' ||
     state.pParticiple === '' ||
-    state.gerund === ''
+    state.gerund === '' ||
+    intents >= 3
 
   return {
     state,
@@ -73,7 +74,7 @@ const useForm = () => {
     handleSpanish,
     setFailswords,
     setTotalIntents,
-    handleSuccess,
+    handleFinish,
   }
 
 }
