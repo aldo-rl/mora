@@ -5,5 +5,6 @@ export const colorPalette = {
   black: '#232425',
   gray: '#8A8B8C',
   blue: '#3A72B5',
-  background: '#F4F6FA'
+  background: '#F4F6FA',
+  fail: '#FF6F6F',
 }

@@ -13,9 +13,10 @@ interface Props {
   value: string,
   onChange: (text: string) => void,
   spacingTop?: boolean,
+  fail?: boolean,
 }
 
-const Input = ({ label, value, onChange, spacingTop = false }: Props) => {
+const Input = ({ label, value, onChange, spacingTop = false, fail = false }: Props) => {
   const inputRef = useRef<TextInput>(null)
 
   const handleLabel = () => {
@@ -37,6 +38,8 @@ const Input = ({ label, value, onChange, spacingTop = false }: Props) => {
         value={value}
         onChangeText={onChange}
       />
+
+      {fail && <View style={styles.indicator} />}
     </View>
   )
 }

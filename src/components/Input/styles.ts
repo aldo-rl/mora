@@ -43,4 +43,14 @@ export const styles = StyleSheet.create({
   spacingTop: {
     marginTop: 12,
   },
+  indicator: {
+    position: 'absolute',
+    left: -24,
+    width: 16,
+    height: 16,
+    borderRadius: 16,
+    zIndex: 1,
+    borderWidth: 4,
+    borderColor: colorPalette.fail,
+  },
 })
