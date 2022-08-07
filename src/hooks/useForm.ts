@@ -9,9 +9,20 @@ const initialState: Word = {
   gerund: '',
 }
 
+export type DataInput = Array<
+  'spanish' |
+  'present' |
+  'past' |
+  'pParticiple' |
+  'gerund'
+>
+
 const useForm = () => {
   const [state, setState] = useState<Word>(initialState)
   const [currentWord, setCurrentWord] = useState<Word>(initialState)
+  const [fails, setFails] = useState<DataInput>([])
+  const [intents, setIntents] = useState<number>(0)
+
 
   const handlerState = (value: Word) => {
     setState(value)
@@ -26,7 +37,21 @@ const useForm = () => {
   }
 
   const handleSpanish = (value: string) => {
-    setState({ ...state, spanish: value })
+    setState({ ...initialState, spanish: value })
+  }
+
+  const setFailswords = (fails: DataInput) => {
+    setFails(fails)
+  }
+
+  const setTotalIntents = (fails: number) => {
+    if (fails === 0) return
+    setIntents(prev => prev + 1)
+  }
+
+  const handleSuccess = () => {
+    setIntents(0)
+    setFails([])
   }
 
   const disabled =
@@ -39,11 +64,16 @@ const useForm = () => {
   return {
     state,
     currentWord,
+    fails,
+    intents,
     disabled,
     handlerState,
     handleReset,
     setCurrentWordPractice,
     handleSpanish,
+    setFailswords,
+    setTotalIntents,
+    handleSuccess,
   }
 
 }

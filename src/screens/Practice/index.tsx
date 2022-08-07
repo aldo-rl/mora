@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Image } from 'react-native'
 
 import { Input } from 'components/Input'
 import { Button } from 'components/Button'
 import { Header } from 'components/Header'
-import { useForm } from '../../hooks/useForm'
+import { DataInput, useForm } from '../../hooks/useForm'
 
 import type { ActiveScreen } from 'components/Navigation'
 
@@ -13,19 +13,13 @@ import { getWords } from 'storage/index'
 import { styles } from './styles'
 import { Word } from 'types/Word'
 
-const dataInput: [
+const dataInput: DataInput = [
   'spanish',
   'present',
   'past',
   'pParticiple',
   'gerund',
-] = [
-    'spanish',
-    'present',
-    'past',
-    'pParticiple',
-    'gerund',
-  ]
+]
 
 
 interface Props {
@@ -38,10 +32,15 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
   const {
     state,
     currentWord,
+    fails,
+    intents,
     disabled,
     handlerState,
     setCurrentWordPractice,
     handleSpanish,
+    setFailswords,
+    setTotalIntents,
+    handleSuccess,
   } = useForm()
 
   useEffect(() => {
@@ -60,7 +59,38 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
 
 
   const handleVerify = async () => {
+    let fails: DataInput = []
 
+    if (
+      currentWord.present.toLocaleLowerCase() !== state.present.toLocaleLowerCase()
+    ) fails = [...fails, 'present']
+
+    if (
+      currentWord.past.toLocaleLowerCase() !== state.past.toLocaleLowerCase()
+    ) fails = [...fails, 'past']
+
+    if (
+      currentWord.pParticiple.toLocaleLowerCase() !== state.pParticiple.toLocaleLowerCase()
+    ) fails = [...fails, 'pParticiple']
+
+    if (
+      currentWord.gerund.toLocaleLowerCase() !== state.gerund.toLocaleLowerCase()
+    ) fails = [...fails, 'gerund']
+
+    if (fails.length === 0) {
+      handleSuccess()
+      reloadWord()
+    }
+
+    setFailswords(fails)
+    setTotalIntents(fails.length)
+  }
+
+  const findFail = (key: string): boolean => {
+    const find = fails.find((el) => el === key)
+    return find === undefined
+      ? false
+      : true
   }
 
   return (
@@ -70,7 +100,7 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
         subtitle={'Great!'}
         legend={'Time to review the verbs'}
         isPractice
-        fails={3}
+        fails={intents}
         activeScreen={activeScreen}
         navigateTo={navigateTo}
         reloadWord={reloadWord}
@@ -89,6 +119,7 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
               value={state[el]}
               spacingTop={el !== 'spanish'}
               editable={el !== 'spanish'}
+              fail={findFail(el)}
             />
           )
         }
