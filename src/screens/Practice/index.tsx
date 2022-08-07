@@ -4,7 +4,10 @@ import { View, Image } from 'react-native'
 import { Input } from 'components/Input'
 import { Button } from 'components/Button'
 import { Header } from 'components/Header'
+import { Congratulations } from 'components/Congratulations'
+
 import { DataInput, useForm } from '../../hooks/useForm'
+import { useModal } from 'hooks/useModal'
 
 import type { ActiveScreen } from 'components/Navigation'
 
@@ -43,6 +46,11 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
     handleSuccess,
   } = useForm()
 
+  const {
+    congratulations,
+    setCongratulations,
+  } = useModal()
+
   useEffect(() => {
     reloadWord()
   }, [])
@@ -80,6 +88,7 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
     if (fails.length === 0) {
       handleSuccess()
       reloadWord()
+      setCongratulations(true)
     }
 
     setFailswords(fails)
@@ -94,40 +103,44 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
   }
 
   return (
-    <View style={styles.fleOne}>
-      <Header
-        title={'Hi'}
-        subtitle={'Great!'}
-        legend={'Time to review the verbs'}
-        isPractice
-        fails={intents}
-        activeScreen={activeScreen}
-        navigateTo={navigateTo}
-        reloadWord={reloadWord}
-      />
-      <Image
-        style={styles.illustration}
-        source={require('../../assets/images/illustration.png')}
-      />
+    <>
       <View style={styles.fleOne}>
-        {
-          dataInput.map((el) =>
-            <Input
-              key={el}
-              label={el}
-              onChange={(text) => handlerState({ ...state, [el]: text })}
-              value={state[el]}
-              spacingTop={el !== 'spanish'}
-              editable={el !== 'spanish'}
-              fail={findFail(el)}
-            />
-          )
-        }
+        <Header
+          title={'Hi'}
+          subtitle={'Great!'}
+          legend={'Time to review the verbs'}
+          isPractice
+          fails={intents}
+          activeScreen={activeScreen}
+          navigateTo={navigateTo}
+          reloadWord={reloadWord}
+        />
+        <Image
+          style={styles.illustration}
+          source={require('../../assets/images/illustration.png')}
+        />
+        <View style={styles.fleOne}>
+          {
+            dataInput.map((el) =>
+              <Input
+                key={el}
+                label={el}
+                onChange={(text) => handlerState({ ...state, [el]: text })}
+                value={state[el]}
+                spacingTop={el !== 'spanish'}
+                editable={el !== 'spanish'}
+                fail={findFail(el)}
+              />
+            )
+          }
+        </View>
+        <View>
+          <Button text={'Verify'} onPress={handleVerify} disabled={disabled} />
+        </View>
       </View>
-      <View>
-        <Button text={'Verify'} onPress={handleVerify} disabled={disabled} />
-      </View>
-    </View>
+
+      {congratulations && <Congratulations handlerClose={() => setCongratulations(false)} />}
+    </>
   )
 }
 
