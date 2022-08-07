@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 import { FONTS } from 'assets/fonts'
+import { colorPalette } from '../../utils/colorPalette'
 
 
 export const styles = StyleSheet.create({
@@ -26,6 +27,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     paddingBottom: 2,
     fontFamily: FONTS.bold,
+    color: colorPalette.black,
   },
   touchable: {
     padding: 6,
@@ -33,5 +35,6 @@ export const styles = StyleSheet.create({
   },
   legend: {
     fontFamily: FONTS.regular,
+    color: colorPalette.black,
   },
 })
