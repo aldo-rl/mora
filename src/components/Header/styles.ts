@@ -1,5 +1,8 @@
 import { StyleSheet } from 'react-native'
 
+import { FONTS } from 'assets/fonts'
+
+
 export const styles = StyleSheet.create({
   header: {
     marginBottom: 24,
@@ -23,6 +26,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     marginRight: 8,
     paddingBottom: 2,
+    fontFamily: FONTS.bold,
   },
   touchable: {
     padding: 6,
@@ -30,6 +34,6 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.5)',
   },
   legend: {
-
+    fontFamily: FONTS.regular,
   },
 })

@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { colorPalette } from '../../utils/colorPalette'
+import { FONTS } from 'assets/fonts'
 
 export const styles = StyleSheet.create({
   button: {
@@ -13,5 +14,7 @@ export const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     color: colorPalette.white,
+    fontFamily: FONTS.semiBold,
+    fontSize: 14,
   },
 })

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { colorPalette } from '../../utils/colorPalette'
 
-
+import { FONTS } from 'assets/fonts'
 
 export const styles = StyleSheet.create({
   inputWrapper: {
@@ -20,7 +20,8 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 20,
-    shadowColor: 'rgba(0,0,0,0.15)'
+    shadowColor: 'rgba(0,0,0,0.15)',
+    fontFamily: FONTS.regular,
   },
   label: {
     position: 'absolute',
@@ -29,6 +30,7 @@ export const styles = StyleSheet.create({
   },
   labelText: {
     color: colorPalette.gray,
+    fontFamily: FONTS.regular,
   },
   pipe: {
     width: 1,
