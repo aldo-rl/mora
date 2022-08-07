@@ -1,8 +1,13 @@
 import { StyleSheet, NativeModules } from 'react-native'
+import { colorPalette } from '../../utils/colorPalette';
 
 const { StatusBarManager } = NativeModules;
 
 export const styles = StyleSheet.create({
+  bg: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: colorPalette.white,
+  },
   main: {
     ...StyleSheet.absoluteFillObject,
   },

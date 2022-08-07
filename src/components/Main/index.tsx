@@ -13,11 +13,7 @@ import { Bubbles } from 'components/Bubbles'
 
 import { styles } from './styles'
 
-interface Props {
-  children: ReactNode
-}
-
-const Main = ({ children }: Props) => {
+const Main = () => {
   return (
     <>
       <StatusBar
@@ -25,6 +21,7 @@ const Main = ({ children }: Props) => {
         backgroundColor={'transparent'}
         translucent
       />
+      <View style={styles.bg} />
       <Bubbles />
       <View style={styles.main}>
         <ScrollView contentContainerStyle={styles.content}>

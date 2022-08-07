@@ -10,12 +10,9 @@
 
 import React from 'react'
 import { Main } from 'components/Main'
-import { Practice } from 'screens/Practice'
 const App = () => {
   return (
-    <Main>
-      {/* <Practice /> */}
-    </Main>
+    <Main />
   )
 }
 
