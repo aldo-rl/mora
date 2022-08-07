@@ -43,6 +43,9 @@ export const styles = StyleSheet.create({
   spacingTop: {
     marginTop: 12,
   },
+  labelFocus: {
+    color: colorPalette.blue,
+  },
   indicator: {
     position: 'absolute',
     left: -24,

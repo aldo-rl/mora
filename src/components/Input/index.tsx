@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import {
   View,
   TextInput,
@@ -18,9 +18,18 @@ interface Props {
 
 const Input = ({ label, value, onChange, spacingTop = false, fail = false }: Props) => {
   const inputRef = useRef<TextInput>(null)
+  const [isFocus, setIsFocus] = useState(false)
 
   const handleLabel = () => {
     inputRef.current?.focus()
+  }
+
+  const handleFocus = () => {
+    setIsFocus(true)
+  }
+
+  const handleBlur = () => {
+    setIsFocus(false)
   }
 
   return (
@@ -29,7 +38,7 @@ const Input = ({ label, value, onChange, spacingTop = false, fail = false }: Pro
         style={styles.label}
         onPress={handleLabel}
       >
-        <Text style={styles.labelText}>{label}</Text>
+        <Text style={[styles.labelText, isFocus && styles.labelFocus]}>{label}</Text>
       </TouchableOpacity>
       <View style={styles.pipe} />
       <TextInput
@@ -37,6 +46,8 @@ const Input = ({ label, value, onChange, spacingTop = false, fail = false }: Pro
         style={styles.input}
         value={value}
         onChangeText={onChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
 
       {fail && <View style={styles.indicator} />}
