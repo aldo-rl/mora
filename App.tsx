@@ -14,7 +14,7 @@ import { Practice } from 'screens/Practice'
 const App = () => {
   return (
     <Main>
-      <Practice />
+      {/* <Practice /> */}
     </Main>
   )
 }

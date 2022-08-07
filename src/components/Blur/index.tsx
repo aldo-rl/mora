@@ -12,7 +12,7 @@ const Blur = () => {
   return <BlurView
     style={styles.blur}
     blurType={ios ? 'regular' : 'light'}
-    blurAmount={0}
+    blurAmount={25}
     reducedTransparencyFallbackColor={colorPalette.white}
   />
 }
