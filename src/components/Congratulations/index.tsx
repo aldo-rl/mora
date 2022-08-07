@@ -10,7 +10,7 @@ import { EmogiGreat } from 'components/Svg'
 
 import { styles } from './styles'
 interface Props {
-  handlerClose: () => void,
+  handlerClose?: () => void,
 }
 const Congratulations = ({ handlerClose }: Props) => {
   return (

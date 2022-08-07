@@ -13,7 +13,7 @@ import { styles } from './styles'
 
 interface Props {
   children: ReactNode,
-  handlerClose: () => void,
+  handlerClose?: () => void,
 }
 
 const Modal = ({ children, handlerClose }: Props) => {

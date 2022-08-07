@@ -17,7 +17,7 @@ const useAnimation = (params: Params) => {
   const {
     duration,
     easing = Easing.in(Easing.ease),
-    handlerClose = () => { },
+    handlerClose,
   } = params
   const node = useRef(new Animated.Value(0)).current
 
@@ -28,10 +28,11 @@ const useAnimation = (params: Params) => {
       easing,
       useNativeDriver: true
     }).start(() => {
+      if (!handlerClose) return
       Animated.timing(node, {
         toValue: 0,
-        delay: 1000,
-        duration,
+        delay: 1100,
+        duration: duration / 2,
         easing,
         useNativeDriver: true
       }).start(handlerClose)
