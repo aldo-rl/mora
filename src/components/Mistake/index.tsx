@@ -46,7 +46,7 @@ const Mistake = ({ handleAutoClose, mistakeWord, handleRefresh }: Props) => {
           <View>
 
             <Text style={styles.title}>{`${EmogiMistake} I'm sorry`}</Text>
-            <Text style={styles.message}>Try again later see verb</Text>
+            <Text style={styles.message}>Try again later</Text>
           </View>
           <View>
             <TouchableOpacity

@@ -1,5 +1,5 @@
 export const colorPalette = {
-  white: '#DBDDE3',
+  white: '#CED1D9',
   lightBlue: '#9FCAF6',
   lilac: '#BFB4F8',
   black: '#232425',

@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 20,
     shadowColor: 'rgba(0,0,0,0.15)',
     fontFamily: FONTS.regular,
+    color: colorPalette.black,
   },
   label: {
     position: 'absolute',

@@ -5,9 +5,9 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   illustration: {
-    bottom: -12,
+    bottom: -9,
     right: -100,
-    height: 220,
+    height: 180,
     resizeMode: 'contain',
   },
 })

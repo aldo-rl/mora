@@ -1,6 +1,8 @@
 import { FONTS } from 'assets/fonts'
 import { StyleSheet } from 'react-native'
 
+import { colorPalette } from '../../utils/colorPalette'
+
 export const styles = StyleSheet.create({
   content: {
     flexDirection: 'row',
@@ -12,10 +14,14 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontFamily: FONTS.semiBold,
+    color: colorPalette.black,
+
   },
   message: {
     fontFamily: FONTS.regular,
     marginTop: 4,
+    color: colorPalette.black,
+
   },
   bottom: {
     marginTop: 24,
@@ -27,8 +33,11 @@ export const styles = StyleSheet.create({
   key: {
     width: 120,
     fontFamily: FONTS.regular,
+    color: colorPalette.black,
+
   },
   word: {
     fontFamily: FONTS.semiBold,
+    color: colorPalette.black,
   },
 })

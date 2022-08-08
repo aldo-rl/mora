@@ -6,7 +6,7 @@ import { colorPalette } from '../../utils/colorPalette'
 
 export const styles = StyleSheet.create({
   header: {
-    marginBottom: 24,
+    marginBottom: 12,
   },
   headerTop: {
     flexDirection: 'row',
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerBottom: {
-    marginTop: 24,
+    marginTop: 12,
   },
   left: {
     flexDirection: 'row',
@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    paddingBottom: 2,
     fontFamily: FONTS.bold,
     color: colorPalette.black,
   },
