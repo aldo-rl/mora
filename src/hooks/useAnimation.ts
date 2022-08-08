@@ -33,7 +33,7 @@ const useAnimation = (params: Params) => {
       if (!autoClose && !handleAutoClose) return
       Animated.timing(node, {
         toValue: 0,
-        delay: 1100,
+        delay: 1200,
         duration: duration / 2,
         easing,
         useNativeDriver: true
