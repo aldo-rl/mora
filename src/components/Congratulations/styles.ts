@@ -19,6 +19,5 @@ export const styles = StyleSheet.create({
     fontFamily: FONTS.regular,
     marginTop: 4,
     color: colorPalette.black,
-
   }
 })

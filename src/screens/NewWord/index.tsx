@@ -8,7 +8,7 @@ import { useForm } from '../../hooks/useForm'
 
 import type { ActiveScreen } from 'components/Navigation'
 
-import { saveWord } from 'storage/index'
+import { getWords, saveWord } from 'storage/index'
 
 import { styles } from './styles'
 import { Learn } from 'components/Learn'
@@ -42,8 +42,25 @@ const NewWord = ({ activeScreen, navigateTo }: Props) => {
   } = useForm()
 
   const [learn, setLearn] = useState(false)
+  const [exist, setExist] = useState(false)
+
+  const existWord = async () => {
+    const words = await getWords()
+    const el = words.find((el) =>
+      el.spanish.toLocaleLowerCase() === state.spanish.toLocaleLowerCase()
+    )
+    return el ? true : false
+  }
 
   const handleSave = async () => {
+    const exist = await existWord()
+
+    if (exist) {
+      setExist(true)
+      setLearn(true)
+      return
+    }
+    setExist(false)
     const err = await saveWord(state)
     if (err) return
     handleReset()
@@ -77,7 +94,10 @@ const NewWord = ({ activeScreen, navigateTo }: Props) => {
           <Button text={'Save'} onPress={handleSave} disabled={disabled} />
         </View>
       </View>
-      {learn && <Learn handleAutoClose={() => setLearn(false)} />}
+      {learn && <Learn
+        handleAutoClose={() => setLearn(false)}
+        exist={exist}
+      />}
 
 
     </>

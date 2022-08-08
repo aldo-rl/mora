@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: colorPalette.background,
     borderRadius: 12,
-    elevation: 1,
+    elevation: 5,
     shadowOffset: {
       width: 0,
       height: 0,
