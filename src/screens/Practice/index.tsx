@@ -119,7 +119,7 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
   }
 
   return (
-    <KeyboardAwareScrollView>
+    <KeyboardAwareScrollView style={styles.wrapper}>
       <View style={styles.fleOne}>
         <Header
           title={'Hi'}
