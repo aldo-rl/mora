@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { View, Image } from 'react-native'
+import React, { useEffect } from 'react'
+import { View, Image, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { Input } from 'components/Input'
 import { Button } from 'components/Button'
@@ -118,7 +119,7 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
   }
 
   return (
-    <>
+    <KeyboardAwareScrollView style={styles.wrapper}>
       <View style={styles.fleOne}>
         <Header
           title={'Hi'}
@@ -134,21 +135,23 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
           style={styles.illustration}
           source={require('../../assets/images/illustration.png')}
         />
-        <View style={styles.fleOne}>
-          {
-            dataInput.map((el) =>
-              <Input
-                key={el}
-                label={el}
-                onChange={(text) => handlerState({ ...state, [el]: text })}
-                value={state[el]}
-                spacingTop={el !== 'spanish'}
-                editable={el !== 'spanish'}
-                fail={findFail(el)}
-              />
-            )
-          }
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.fleOne}>
+            {
+              dataInput.map((el) =>
+                <Input
+                  key={el}
+                  label={el}
+                  onChange={(text) => handlerState({ ...state, [el]: text })}
+                  value={state[el]}
+                  spacingTop={el !== 'spanish'}
+                  editable={el !== 'spanish'}
+                  fail={findFail(el)}
+                />
+              )
+            }
+          </ View>
+        </TouchableWithoutFeedback>
         <View>
           <Button text={'Verify'} onPress={handleVerify} disabled={disabled} />
         </View>
@@ -157,7 +160,7 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
       {congratulations && <Congratulations handleAutoClose={() => setCongratulations(false)} />}
       {mistake && <Mistake mistakeWord={currentWord} handleRefresh={handleMistake} />}
 
-    </>
+    </ KeyboardAwareScrollView>
   )
 }
 
