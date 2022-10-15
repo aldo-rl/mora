@@ -24,3 +24,14 @@ export const getWords = async (): Promise<Word[]> => {
     return []
   }
 }
+
+export const deleteWord = async (word: Word): Promise<Error> => {
+  try {
+    const words = await getWords()
+    const newWords = words.filter((w) => (w.past !== word.past && w.present !== word.present))
+    await AsyncStorage.setItem('@words', JSON.stringify(newWords))
+    return false
+  } catch (e) {
+    return true
+  }
+}

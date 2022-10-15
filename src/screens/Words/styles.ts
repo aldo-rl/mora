@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 20,
     shadowColor: 'rgba(0,0,0,0.15)',
+    marginBottom: 10,
   },
   scroll: {
     flexDirection: 'row',
@@ -32,7 +33,7 @@ export const styles = StyleSheet.create({
     color: colorPalette.gray,
   },
   actions: {
-    width: 80,
+    width: 40,
     flexDirection: 'row',
     alignItems: 'center'
   },

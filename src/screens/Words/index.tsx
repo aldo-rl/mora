@@ -10,7 +10,10 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
-import { getWords } from '../../storage'
+import {
+  getWords,
+  deleteWord,
+} from '../../storage'
 
 import { Header } from 'components/Header'
 
@@ -32,6 +35,12 @@ const Words = () => {
 
   }
 
+  const handleDelete = async (word: Word) => {
+    const error = await deleteWord(word)
+    console.log('error: ', error)
+    reloadWord()
+  }
+
 
   const Word = ({ word }: { word: Word }) => {
     return (
@@ -42,21 +51,12 @@ const Words = () => {
           showsHorizontalScrollIndicator={false}
         >
           <Text style={styles.word}>{word.present}</Text>
-          {/* <Text style={styles.pipe}>|</Text>
-          <Text style={styles.word}>{word.past}</Text>
-          <Text style={styles.pipe}>|</Text>
-          <Text style={styles.word}>{word.pParticiple}</Text>
-          <Text style={styles.pipe}>|</Text>
-          <Text style={styles.word}>{word.pParticiple}</Text> */}
           <Text style={styles.pipe}>|</Text>
           <Text style={styles.word}>{word.spanish}</Text>
         </ScrollView>
 
         <View style={styles.actions}>
-          <TouchableOpacity style={styles.delete}>
-            <Text>🖋</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.delete}>
+          <TouchableOpacity style={styles.delete} onPress={() => handleDelete(word)}>
             <Text>❌</Text>
           </TouchableOpacity>
         </View>
