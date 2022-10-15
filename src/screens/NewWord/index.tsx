@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
 
+import { getWords, saveWord } from 'storage/index'
+
 import { Input } from 'components/Input'
 import { Button } from 'components/Button'
 import { Header } from 'components/Header'
 import { useForm } from '../../hooks/useForm'
-
-import type { ActiveScreen } from 'components/Navigation'
-
-import { getWords, saveWord } from 'storage/index'
 
 import { styles } from './styles'
 import { Learn } from 'components/Learn'
@@ -27,12 +25,7 @@ const dataInput: [
     'gerund',
   ]
 
-interface Props {
-  activeScreen: ActiveScreen,
-  navigateTo: (screen: ActiveScreen) => void
-}
-
-const NewWord = ({ activeScreen, navigateTo }: Props) => {
+const NewWord = () => {
 
   const {
     state,
@@ -74,8 +67,6 @@ const NewWord = ({ activeScreen, navigateTo }: Props) => {
           title={'Hi'}
           subtitle={'Great!'}
           legend={'You will learn a new word'}
-          activeScreen={activeScreen}
-          navigateTo={navigateTo}
         />
         <View style={styles.fleOne}>
           {
@@ -94,12 +85,13 @@ const NewWord = ({ activeScreen, navigateTo }: Props) => {
           <Button text={'Save'} onPress={handleSave} disabled={disabled} />
         </View>
       </View>
-      {learn && <Learn
-        handleAutoClose={() => setLearn(false)}
-        exist={exist}
-      />}
 
-
+      {
+        learn && <Learn
+          handleAutoClose={() => setLearn(false)}
+          exist={exist}
+        />
+      }
     </>
   )
 }

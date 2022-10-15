@@ -7,12 +7,13 @@ import {
 interface Props {
   size?: number,
   stroke?: number,
+  fill?: string,
 }
 
 export const SvgDialog = ({ size = 24, stroke = 2 }: Props) => (
   <Svg
-    width={22}
-    height={22}
+    width={size}
+    height={size}
     fill="none"
   // xmlns="http://www.w3.org/2000/svg"
   // {...props}
@@ -67,6 +68,20 @@ export const SvgReload = ({ size = 24, stroke = 1.15 }: Props) => (
     <Path
       d="M20.279 13.817a1.15 1.15 0 0 1-2.099.937l-1.733-3.885a1.15 1.15 0 1 1 2.099-.937l1.733 3.885Z"
       fill="#232425"
+    />
+  </Svg>
+)
+
+export const SvgList = ({ size = 24, stroke = 1.15, fill }: Props) => (
+  <Svg
+    width={size}
+    height={size}
+    fill="none"
+  // xmlns="http://www.w3.org/2000/svg"
+  >
+    <Path
+      d="M3 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM3 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM3 17a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM19.06 10H6.94a.94.94 0 0 0-.94.94v.12c0 .52.42.94.94.94h12.12c.52 0 .94-.42.94-.94v-.12a.94.94 0 0 0-.94-.94ZM19.06 15H6.94a.94.94 0 0 0-.94.94v.12c0 .52.42.94.94.94h12.12c.52 0 .94-.42.94-.94v-.12a.94.94 0 0 0-.94-.94ZM19.06 5H6.94a.94.94 0 0 0-.94.94v.12c0 .52.42.94.94.94h12.12c.52 0 .94-.42.94-.94v-.12a.94.94 0 0 0-.94-.94Z"
+      fill={fill || '#232425'}
     />
   </Svg>
 )

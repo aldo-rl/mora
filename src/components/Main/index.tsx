@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { ReactNode } from 'react'
 
 import {
@@ -8,12 +8,20 @@ import {
 } from 'react-native'
 
 import { Navigation } from 'components/Navigation'
-
 import { Bubbles } from 'components/Bubbles'
+import { BototmNavigation } from 'components/BottomNavigation'
 
 import { styles } from './styles'
 
+export type ActiveNavigation = 'practice' | 'newWord' | 'list'
+
 const Main = () => {
+  const [activeScreen, setActiveScreen] = useState<ActiveNavigation>('practice')
+
+  const navigate = (screen: ActiveNavigation) => {
+    setActiveScreen(screen)
+  }
+
   return (
     <>
       <StatusBar
@@ -25,9 +33,16 @@ const Main = () => {
       <Bubbles />
       <View style={styles.main}>
         <ScrollView contentContainerStyle={styles.content}>
-          <Navigation />
+          <Navigation
+            activeScreen={activeScreen}
+          />
         </ScrollView>
       </View>
+      <BototmNavigation
+        navigate={navigate}
+        activeScreen={activeScreen}
+
+      />
     </>
   )
 }

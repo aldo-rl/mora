@@ -11,7 +11,6 @@ import { Mistake } from 'components/Mistake'
 import { DataInput, useForm } from '../../hooks/useForm'
 import { useModal } from 'hooks/useModal'
 
-import type { ActiveScreen } from 'components/Navigation'
 
 import { getWords } from 'storage/index'
 
@@ -27,12 +26,7 @@ const dataInput: DataInput = [
 ]
 
 
-interface Props {
-  activeScreen: ActiveScreen,
-  navigateTo: (screen: ActiveScreen) => void,
-}
-
-const Practice = ({ activeScreen, navigateTo }: Props) => {
+const Practice = () => {
 
   const {
     state,
@@ -127,8 +121,6 @@ const Practice = ({ activeScreen, navigateTo }: Props) => {
           legend={'Time to review the verbs'}
           isPractice
           fails={intents}
-          activeScreen={activeScreen}
-          navigateTo={navigateTo}
           reloadWord={reloadWord}
         />
         <Image

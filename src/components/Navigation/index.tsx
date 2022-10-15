@@ -1,28 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Text } from 'react-native'
 
 import { NewWord } from 'screens/NewWord'
 import { Practice } from 'screens/Practice'
+import { Words } from 'screens/Words'
 
-export type ActiveScreen = 'practice' | 'newWord'
+import { ActiveNavigation } from '../Main'
 
-const Navigation = () => {
-  const [activeScreen, setActiveScreen] = useState<ActiveScreen>('practice')
+interface Props {
+  activeScreen: ActiveNavigation,
+}
 
-  const handleNavigate = (screen: ActiveScreen) => {
-    setActiveScreen(screen)
+const Navigation = ({ activeScreen }: Props) => {
+
+  if (activeScreen === 'practice') {
+    return <Practice />
   }
 
-  return activeScreen === 'practice'
-    ? <Practice
-      activeScreen={activeScreen}
-      navigateTo={handleNavigate}
-    />
-    : <NewWord
-      activeScreen={activeScreen}
-      navigateTo={handleNavigate}
-    />
+  if (activeScreen === 'newWord') {
+    return <NewWord />
+  }
 
+  if (activeScreen === 'list') {
+    return <Words />
+  }
 
+  return <></>
 }
 
 export { Navigation }

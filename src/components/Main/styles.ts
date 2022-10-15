@@ -16,5 +16,6 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.2)',
     flexGrow: 1,
     paddingHorizontal: 16,
+    paddingBottom: 68,
   }
 })
