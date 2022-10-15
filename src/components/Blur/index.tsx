@@ -11,7 +11,7 @@ const ios = Platform.OS === 'ios'
 const Blur = () => {
   return <BlurView
     style={styles.blur}
-    blurType={ios ? 'regular' : 'light'}
+    blurType={'light'}
     blurAmount={25}
     reducedTransparencyFallbackColor={colorPalette.white}
   />
