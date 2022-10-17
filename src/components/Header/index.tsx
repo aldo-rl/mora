@@ -7,6 +7,7 @@ import {
 
 import { Mistakes } from 'components/Mistakes'
 import { SvgReload } from 'components/Svg'
+import { Search } from 'components/Search'
 
 import { styles } from './styles'
 
@@ -17,6 +18,8 @@ interface Props {
   fails?: number,
   isPractice?: boolean,
   reloadWord?: () => void,
+  searchValue?: string,
+  setSearch?: (value: string) => void,
 }
 
 const Header = (props: Props) => {
@@ -27,6 +30,8 @@ const Header = (props: Props) => {
     isPractice = false,
     fails,
     reloadWord,
+    searchValue,
+    setSearch,
   } = props
 
   const handlerReload = () => {
@@ -46,6 +51,10 @@ const Header = (props: Props) => {
               </TouchableOpacity>
               <Mistakes fails={fails ?? 0} />
             </>
+          }
+
+          {
+            setSearch && <Search value={searchValue ?? ''} setValue={setSearch} />
           }
 
         </View>

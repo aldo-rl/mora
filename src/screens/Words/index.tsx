@@ -8,6 +8,7 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
+  LayoutAnimation,
 } from 'react-native'
 
 import {
@@ -23,22 +24,35 @@ import { styles } from './styles'
 
 const Words = () => {
 
+  const [originalWords, setOriginalWords] = useState<Word[]>([])
   const [words, setWords] = useState<Word[]>([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
-    reloadWord()
+    loadWords()
   }, [])
 
-  const reloadWord = async () => {
+  useEffect(() => {
+    const wodrFilter = originalWords.filter((word) => {
+      return word.spanish.toLowerCase().includes(search.toLowerCase())
+        || word.present.toLowerCase().includes(search.toLowerCase())
+        || word.past.toLowerCase().includes(search.toLowerCase())
+        || word.pParticiple.toLowerCase().includes(search.toLowerCase())
+        || word.gerund.toLowerCase().includes(search.toLowerCase())
+
+    })
+    setWords(wodrFilter)
+  }, [search])
+
+  const loadWords = async () => {
     const wrds = await getWords()
     setWords(wrds)
-
+    setOriginalWords(wrds)
   }
 
   const handleDelete = async (word: Word) => {
-    const error = await deleteWord(word)
-    console.log('error: ', error)
-    reloadWord()
+    await deleteWord(word)
+    loadWords()
   }
 
 
@@ -71,6 +85,8 @@ const Words = () => {
           title={'Your verbs'}
           subtitle={'🎉 Wow!'}
           legend={'You have too many verbs'}
+          searchValue={search}
+          setSearch={(value: string) => setSearch(value)}
         />
 
         <View>
